@@ -1,0 +1,31 @@
+
+    /* Card con sombra naranja fija */
+    .register-card {
+        border-radius: 1rem;
+        padding: 2.5rem;
+        width: 600px; /* más ancho */
+        box-shadow: 0 8px 30px rgb(189, 87, 3); /* sombra naranja */
+        background-color: #fff;
+    }
+
+    /* Título dentro del card */
+    .register-title {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: #ff7b00;
+        margin-bottom: 25px;
+        text-align: center;
+    }
+
+    /* Botón naranja */
+    .btn-orange {
+        background-color: #ff7b00;
+        color: #fff;
+        border: none;
+        transition: background-color 0.3s, box-shadow 0.3s;
+    }
+    .btn-orange:hover {
+         color: #ffff;
+        background-color: #cc5e00;
+        box-shadow: 0 0 10px rgba(255,123,0,0.5);
+    }
