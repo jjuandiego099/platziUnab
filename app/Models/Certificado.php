@@ -9,7 +9,7 @@ class Certificado extends Model
 {
     use HasFactory;
     protected $table="certificados";
-     protected $fillable = [
+    protected $fillable = [
         'user_id',
         'curso_id',
         'url_certificado',
