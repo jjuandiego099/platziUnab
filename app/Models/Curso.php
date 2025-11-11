@@ -20,4 +20,12 @@ class Curso extends Model
         'profesor_id', 
     ];
     public $timestamps =true;
+    public function categoria()
+    {
+        return $this->belongsTo(Categoria::class, 'categoria_id');
+    }
+    public function profesor()
+    {
+        return $this->belongsTo(User::class, 'profesor_id');
+    }
 }

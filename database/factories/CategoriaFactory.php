@@ -16,8 +16,21 @@ class CategoriaFactory extends Factory
      */
     public function definition(): array
     {
+        $categorias = [
+    'Programación',
+    'Diseño Gráfico',
+    'Marketing Digital',
+    'Ciberseguridad',
+    'Inteligencia Artificial',
+    'Desarrollo Web',
+    'Gestión de Proyectos',
+    'Bases de Datos',
+    'Análisis de Datos',
+    'Emprendimiento'
+];
+
         return [
-             'name'=> fake()->name()
+             'name' => $this->faker->randomElement($categorias),
         ];
     }
 }

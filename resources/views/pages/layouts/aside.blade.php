@@ -6,7 +6,7 @@
          <a class="navbar-brand px-4 py-3 m-0" href=" https://demos.creative-tim.com/material-dashboard/pages/dashboard "
              target="_blank">
              <img style="max-height: fit-content!important;"
-                 src="{{ asset('../assets/img/logos/LogoUNAB/unab_logo.png') }}" alt="Ecommerce UNAB"
+                 src="{{ asset('assets/img/logos/LogoUNAB/unab_logo.png') }}" alt="Ecommerce UNAB"
                  class="img-fluid border-radius-lg shadow-sm">
 
          </a>
@@ -21,11 +21,19 @@
                      <span class="nav-link-text ms-1">Dashboard</span>
                  </a>
              </li>
+              <li class="nav-item">
+                 <a class="nav-link {{ Request::is('home') ? 'active bg-gradient-dark text-white' : 'text-dark' }}"
+                     href="{{ route('home') }}">
+                     <i class="material-symbols-rounded opacity-5">label</i>
+                     <span class="nav-link-text ms-1">Categorias</span>
+                 </a>
+             </li>
+             
              <li class="nav-item">
 
                  <a class="nav-link text-dark d-flex align-items-center collapsed" data-bs-toggle="collapse"
                      href="#submenuCursos" role="button" aria-expanded="false" aria-controls="submenuCursos">
-                     <i class="material-symbols-rounded opacity-5 me-2">table_view</i>
+                     <i class="material-symbols-rounded opacity-5 me-2">folder</i>
                      <span class="nav-link-text flexgrow-1">Cursos</span>
                      <i class="material-symbols-rounded ms-auto">expand_more</i>
                  </a>
@@ -47,8 +55,8 @@
                          </li>
                          <li class="nav-item">
                              <a class="nav-link text-secondary">
-                                 <i class="material-symbols-rounded opacity-5 me-2">add</i>
-                                 Nuevo Curso
+                                 <i class="material-symbols-rounded opacity-5 me-2">search</i>
+                                 Buscar Curso
                              </a>
                          </li>
                      </ul>
@@ -58,7 +66,7 @@
 
                  <a class="nav-link text-dark d-flex align-items-center collapsed" data-bs-toggle="collapse"
                      href="#submenuCertificados" role="button" aria-expanded="false" aria-controls="submenuCertificados">
-                     <i class="material-symbols-rounded opacity-5 me-2">table_view</i>
+                     <i class="material-symbols-rounded opacity-5 me-2">verified</i>
                      <span class="nav-link-text flexgrow-1">Certificados</span>
                      <i class="material-symbols-rounded ms-auto">expand_more</i>
                  </a>
@@ -84,13 +92,13 @@
              </li>
              <li class="nav-item">
                  <a class="nav-link text-dark" href="../pages/tables.html">
-                     <i class="material-symbols-rounded opacity-5">table_view</i>
+                     <i class="material-symbols-rounded opacity-5">description</i>
                      <span class="nav-link-text ms-1">Reseñas</span>
                  </a>
              </li>
              <li class="nav-item">
                  <a class="nav-link text-dark" href="../pages/tables.html">
-                     <i class="material-symbols-rounded opacity-5">table_view</i>
+                     <i class="material-symbols-rounded opacity-5">info</i>
                      <span class="nav-link-text ms-1">Informacion</span>
                  </a>
              </li>
