@@ -12,5 +12,8 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\CursosController::class, 'cursos'])->name('home');
 Route::get('home/categorias/{id}', [CursosController::class, 'filterByCategory'])->name('filtro.categorias');
-Route::get('/categorias', [CategoriasController::class, 'create'])->name('categorias.name');
+Route::get('/categorias', [CategoriasController::class, 'index'])->name('categorias.table');
+Route::get('/categorias/create', [CategoriasController::class, 'create'])->name('categorias.create');
+Route::post('/categorias/store', [CategoriasController::class, 'store'])->name('categorias.store');
+Route::delete('/categorias/{id}', [CategoriasController::class, 'destroy'])->name('categorias.destroy');
 
