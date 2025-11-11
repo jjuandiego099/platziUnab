@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Leccion extends Model
 {
     use HasFactory;
-    protected $table="lecciones";
+    protected $table = "lecciones";
     protected $fillable = [
         'curso_id',
         'titulo',
@@ -16,5 +16,6 @@ class Leccion extends Model
         'contenido',
         'orden',
     ];
-    public $timestamps =true;
+    public $timestamps = true;
+   
 }

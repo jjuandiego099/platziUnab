@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Curso;
 use App\Models\Leccion;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -13,6 +14,10 @@ class LeccionSeeder extends Seeder
      */
     public function run(): void
     {
-        Leccion::factory(10)->create();
+        foreach (Curso::all() as $curso) {
+            Leccion::factory(4)->create([
+                'curso_id' => $curso->id,
+            ]);
+        }
     }
 }

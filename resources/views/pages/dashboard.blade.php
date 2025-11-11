@@ -20,6 +20,50 @@
         .fw-bold {
             color: #333;
         }
+
+        .category-card {
+            transition: all 0.4s ease;
+            border-width: 2px !important;
+            background-color: #fff;
+        }
+
+        .category-card:hover {
+            background: linear-gradient(135deg, #e91e63, #f06292);
+            color: #fff;
+            transform: translateY(-5px);
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
+            border-color: transparent !important;
+        }
+
+        .category-card:hover span {
+            color: #fff !important;
+        }
+
+        .curso-card {
+            transition: all 0.3s ease;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .curso-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 8px 18px rgba(233, 30, 99, 0.25);
+            border: 1px solid #e91e63;
+        }
+
+       
+        .ver-btn {
+            transition: all 0.3s ease;
+            border: 1px solid #e91e63 !important;
+            color: #e91e63 !important;
+            background-color: #fff;
+        }
+
+        .ver-btn:hover {
+            background-color: #e91e63 !important;
+            color: #fff !important;
+            box-shadow: 0 4px 10px rgba(233, 30, 99, 0.3);
+        }
     </style>
     <div class="row">
         <div class="ms-3">
@@ -65,43 +109,47 @@
 
 
 
-    <div class="container-fluid px-3 my-4" style="overflow-x: hidden;">
+   <div class="container-fluid px-3 my-4" style="overflow-x: hidden;">
 
-        <div class="row g-3">
-            @foreach ($cursos as $curso)
-                <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                    <div class="card h-100 shadow-sm border-0">
-                        <!-- Imagen del curso -->
-                        <img src="{{ $curso->imagen ?? 'https://picsum.photos/400/250' }}" class="card-img-top img-fluid"
-                            alt="Imagen del curso {{ $curso->titulo }}">
+  <div class="row g-3">
+    @foreach ($cursos as $curso)
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+        <div class="card curso-card h-100 shadow-sm border-0">
+          <!-- Imagen del curso -->
+          <img src="{{ $curso->imagen ?? 'https://picsum.photos/400/250' }}"
+               class="card-img-top img-fluid"
+               alt="Imagen del curso {{ $curso->titulo }}">
 
-                        <!-- Contenido -->
-                        <div class="card-body d-flex flex-column justify-content-between">
-                            <div>
-                                <h5 class="card-title fw-bold text-primary">{{ $curso->titulo }}</h5>
-                                <p class="card-text text-muted mb-3">{{ $curso->descripcion }}</p>
-                            </div>
+          <!-- Contenido -->
+          <div class="card-body d-flex flex-column justify-content-between">
+            <div>
+              <h5 class="card-title fw-bold text-primary">{{ $curso->titulo }}</h5>
+              <p class="card-text text-muted mb-3">{{ $curso->descripcion }}</p>
+            </div>
 
-                            <!-- Sección fija inferior -->
-                            <div class="mt-auto">
-                                <div class="mb-2">
-                                    <span class="badge bg-info text-white d-block mb-1">
-                                        Categoría: {{ $curso->categoria->name }}
-                                    </span>
-                                    <span class="badge bg-info text-dark d-block ">
-                                        Profesor: {{ $curso->profesor->name }}
-                                    </span>
-                                </div>
+            <!-- Sección fija inferior -->
+            <div class="mt-auto">
+              <div class="mb-2">
+                <span class="badge bg-info text-white d-block mb-1">
+                  Categoría : {{ $curso->categoria->name }}
+                </span>
+                <span class="badge bg-info text-white d-block mb-1">
+                  Nivel : {{ $curso->nivel }}
+                </span>
+                <span class="badge bg-info text-white d-block mb-1">
+                  Profesor : {{ $curso->profesor->name }}
+                </span>
+              </div>
 
-                                <!-- Botón -->
-                                <button class="btn btn-outline-primary btn-sm w-100" disabled>
-                                    Ver detalles
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            @endforeach
+              <!-- Botón -->
+              <a class="btn btn-outline-primary btn-sm w-100 ver-btn" href="{{route('categorias.index',$curso->id)}}">
+                Ver detalles
+              </a>
+            </div>
+          </div>
         </div>
-    </div>
+      </div>
+    @endforeach
+  </div>
+</div>
 @endsection
