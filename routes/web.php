@@ -27,6 +27,7 @@ Route::get('cursos/{curso}', [CursosController::class, 'index'])->name('cursos.i
 
 Route::prefix('cursos')->group(function () {
     Route::delete('/{curso}', [CursosController::class, 'destroy'])->name('cursos.destroy');
+    
 
     Route::get('/', [CursosController::class, 'table'])->name('cursos.table');
     Route::get('/{curso}/lecciones', [CursosController::class, 'lecciones'])->name('cursos.lecciones');

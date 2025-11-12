@@ -32,4 +32,8 @@ class Curso extends Model
     {
         return $this->hasMany(Leccion::class, 'curso_id');
     }
+    public function inscripciones()
+{
+    return $this->hasMany(Inscripcion::class, 'curso_id');
+}
 }
