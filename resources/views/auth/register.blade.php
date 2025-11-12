@@ -56,17 +56,18 @@
                             <option value="teacher">Profesor</option>
                             <option value="student">Estudiante</option>
                         </select>
-
-                        @error('role')
-                            <span class="text-danger">{{ $message }}</span>
-                        @enderror
                     </div>
 
-                    <div class="d-flex justify-content-start">
-                        <button type="submit" class="btn btn-orange px-4 py-2">{{ __('Register') }}</button>
-                    </div>
-                </form>
+                    @error('role')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
             </div>
+
+            <div class="d-flex justify-content-start">
+                <button type="submit" class="btn btn-orange px-4 py-2">{{ __('Register') }}</button>
+            </div>
+            </form>
         </div>
+    </div>
     </div>
 @endsection

@@ -26,7 +26,7 @@ Route::get('home/categorias/{id}', [CursosController::class, 'filterByCategory']
 Route::get('cursos/{id}', [CursosController::class, 'index'])->name('cursos.index');
 Route::prefix('cursos')->middleware(['permission:categorias'])->group(function () {
     Route::delete('/{id}', [CursosController::class, 'destroy'])->name('cursos.destroy');
-    
+
     Route::get('/', [CursosController::class, 'table'])->name('cursos.table');
     Route::get('/{id}/lecciones', [CursosController::class, 'lecciones'])->name('cursos.lecciones');
 

@@ -13,7 +13,7 @@ class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
-     use HasRoles;
+    use HasRoles;
 
     /**
      * The attributes that are mass assignable.
@@ -24,6 +24,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+      
     ];
 
     /**
@@ -35,7 +36,7 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
-    
+
 
     /**
      * Get the attributes that should be cast.
@@ -49,5 +50,4 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
-    
 }

@@ -35,6 +35,11 @@
                             Inscribirme
                         </a>
                     @endcan
+                    @guest
+                    <a class="btn btn-primary btn-lg px-5 inscribirme-btn" href="{{ route('login') }}">
+                            Registrarme
+                        </a>
+                        @endguest
                     @can('eliminar curso')
                      <form action="{{ route('cursos.destroy', $curso->id) }}" method="POST">
                                     @csrf
@@ -50,7 +55,7 @@
                 </div>
             </div>
         </div>
-
+        @auth
         <!-- Sección de lecciones -->
         <div class="card shadow-sm border-0 mx-auto" style="max-width: 900px;">
             <div class="card-body p-4">
@@ -75,6 +80,7 @@
                 @endif
             </div>
         </div>
+        @endauth
 
     </div>
 
