@@ -33,7 +33,7 @@ class CursoFactory extends Factory
             'imagen' => $this->faker->randomElement($imagenesCursos),
             'nivel' => fake()->randomElement(['Básico', 'Intermedio', 'Avanzado']),
             'categoria_id' => Categoria::inRandomOrder()->first()?->id ?? Categoria::factory(),
-            'profesor_id' => User::inRandomOrder()->first()?->id ?? User::factory(),
+            'profesor_id' => 2,
         ];
     }
 }

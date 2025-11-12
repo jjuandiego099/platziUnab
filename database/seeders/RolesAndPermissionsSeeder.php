@@ -26,6 +26,7 @@ class RolesAndPermissionsSeeder extends Seeder
         Permission::firstOrCreate(['name' => 'inscribirse', 'guard_name' => 'web']);
         Permission::firstOrCreate(['name' => 'autenticacion', 'guard_name' => 'web']);
         Permission::firstOrCreate(['name' => 'eliminar curso', 'guard_name' => 'web']);
+        Permission::firstOrCreate(['name' => 'editar lecciones', 'guard_name' => 'web']);
         $adminUser = User::updateOrCreate(
             ['id' => 1], // fuerza a usar el ID 1 si existe o lo crea si no
             [
@@ -37,8 +38,32 @@ class RolesAndPermissionsSeeder extends Seeder
                
             ]
         );
+        $teacherUser = User::updateOrCreate(
+            ['id' => 2], // fuerza a usar el ID 1 si existe o lo crea si no
+            [
+                'name' => 'Efrain Teacher',
+                'email' => 'juandis08141@hotmail.com',
+                'email_verified_at' => now(),
+                'password' => bcrypt('empresa123'),
+                'remember_token' => Str::random(10),
+               
+            ]
+        );
+        $studentUser = User::updateOrCreate(
+            ['id' => 3], // fuerza a usar el ID 1 si existe o lo crea si no
+            [
+                'name' => 'Vargas Student',
+                'email' => 'juandis08142@hotmail.com',
+                'email_verified_at' => now(),
+                'password' => bcrypt('empresa123'),
+                'remember_token' => Str::random(10),
+               
+            ]
+        );
         $adminUser->assignRole('admin');
-        $admin->syncPermissions('categorias', 'eliminar curso');
+        $teacherUser->assignRole('teacher');
+        $studentUser->assignRole('student');
+        $admin->syncPermissions('categorias', 'eliminar curso','editar lecciones');
         $student->syncPermissions('inscribirse');
     }
 }

@@ -36,50 +36,56 @@
                         </a>
                     @endcan
                     @guest
-                    <a class="btn btn-primary btn-lg px-5 inscribirme-btn" href="{{ route('login') }}">
+                        <a class="btn btn-primary btn-lg px-5 inscribirme-btn" href="{{ route('login') }}">
                             Registrarme
                         </a>
-                        @endguest
+                    @endguest
                     @can('eliminar curso')
-                     <form action="{{ route('cursos.destroy', $curso->id) }}" method="POST">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit"
-                                        class="btn btn-primary btn-lg px-5 inscribirme-btn">Eliminar Curso</button>
-                                </form>
-                        
+                        <form action="{{ route('cursos.destroy', $curso->id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-primary btn-lg px-5 inscribirme-btn">Eliminar Curso</button>
+                        </form>
                     @endcan
-                    
+
 
 
                 </div>
             </div>
         </div>
         @auth
-        <!-- Sección de lecciones -->
-        <div class="card shadow-sm border-0 mx-auto" style="max-width: 900px;">
-            <div class="card-body p-4">
-                <h4 class="fw-bold text-primary mb-3">Lecciones del curso</h4>
+            <!-- Sección de lecciones -->
 
-                @if ($curso->lecciones->count() > 0)
-                    <ul class="list-group list-group-flush">
-                        @foreach ($curso->lecciones->sortBy('orden') as $leccion)
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                <div>
-                                    <strong>Leccion {{ $leccion->orden }}: {{ $leccion->titulo }}</strong><br>
-                                    <small class="text-muted">{{ $leccion->contenido }}</small>
-                                </div>
-                                <a href="{{ $leccion->video_url }}" target="_blank" class="btn btn-outline-primary btn-sm">
-                                    Ver video
-                                </a>
-                            </li>
-                        @endforeach
-                    </ul>
-                @else
-                    <p class="text-muted text-center mt-3">Este curso aún no tiene lecciones disponibles.</p>
-                @endif
+            <div class="card shadow-sm border-0 mx-auto" style="max-width: 900px;">
+
+                <div class="card-body p-4">
+                    <h4 class="fw-bold text-primary mb-3">Lecciones del curso</h4>
+                    @can('editar lecciones')
+                        <form action="{{ route('cursos.lecciones', $curso->id) }}" method="GET">
+
+                            <button type="submit" class="btn btn-primary btn-lg px-5 inscribirme-btn">Editar Lecciones</button>
+                        </form>
+                    @endcan
+
+                    @if ($curso->lecciones->count() > 0)
+                        <ul class="list-group list-group-flush">
+                            @foreach ($curso->lecciones->sortBy('orden') as $leccion)
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <strong>Leccion {{ $leccion->orden }}: {{ $leccion->titulo }}</strong><br>
+                                        <small class="text-muted">{{ $leccion->contenido }}</small>
+                                    </div>
+                                    <a href="{{ $leccion->video_url }}" target="_blank" class="btn btn-outline-primary btn-sm">
+                                        Ver video
+                                    </a>
+                                </li>
+                            @endforeach
+                        </ul>
+                    @else
+                        <p class="text-muted text-center mt-3">Este curso aún no tiene lecciones disponibles.</p>
+                    @endif
+                </div>
             </div>
-        </div>
         @endauth
 
     </div>

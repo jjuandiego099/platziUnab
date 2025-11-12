@@ -9,6 +9,7 @@
                 <thead>
                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Id</th>
                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Profesor</th>
                 
                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Created</th>
                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Updated</th>
@@ -23,6 +24,9 @@
                             </td>
                             <td class="align-middle text-center">
                                 {{ $curso->titulo }}
+                            </td>
+                            <td class="align-middle text-center">
+                                {{ $curso->profesor->name }}
                             </td>
 
                             </td>
