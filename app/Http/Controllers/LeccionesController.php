@@ -7,11 +7,11 @@ use Illuminate\Http\Request;
 
 class LeccionesController extends Controller
 {
-     public function destroy($id,$id2)
+    public function destroy($id, $id2)
     {
         $cursos = Curso::find($id);
-        $leccion = $cursos->lecciones;
-        $leccion->delete($id2);
-        return redirect()->route('cursos.table');
+        $leccion = $cursos->lecciones()->findOrFail($id2);
+        $leccion->delete();
+        return redirect()->route('cursos.lecciones', $cursos->id);
     }
 }
