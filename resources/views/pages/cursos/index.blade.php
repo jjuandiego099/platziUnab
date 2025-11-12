@@ -29,7 +29,7 @@
 
 
 
-                <div class="text-center">
+                <div class="text-center d-flex justify-content-between">
                     @can('inscribirse')
                         <a class="btn btn-primary btn-lg px-5 inscribirme-btn" href="{{ route('home') }}">
                             Inscribirme
@@ -40,7 +40,7 @@
                             Registrarme
                         </a>
                     @endguest
-                    @can('eliminar curso')
+                    @can('editarLecciones', $curso)
                         <form action="{{ route('cursos.destroy', $curso->id) }}" method="POST">
                             @csrf
                             @method('DELETE')
@@ -60,7 +60,7 @@
 
                 <div class="card-body p-4">
                     <h4 class="fw-bold text-primary mb-3">Lecciones del curso</h4>
-                    @can('editar lecciones')
+                    @can('editarLecciones', $curso)
                         <form action="{{ route('cursos.lecciones', $curso->id) }}" method="GET">
 
                             <button type="submit" class="btn btn-primary btn-lg px-5 inscribirme-btn">Editar Lecciones</button>

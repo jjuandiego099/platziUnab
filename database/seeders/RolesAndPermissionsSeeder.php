@@ -22,11 +22,9 @@ class RolesAndPermissionsSeeder extends Seeder
         $student = Role::firstOrCreate(['name' => 'student', 'guard_name' => 'web']);
 
 
-        Permission::firstOrCreate(['name' => 'categorias', 'guard_name' => 'web']);
         Permission::firstOrCreate(['name' => 'inscribirse', 'guard_name' => 'web']);
-        Permission::firstOrCreate(['name' => 'autenticacion', 'guard_name' => 'web']);
-        Permission::firstOrCreate(['name' => 'eliminar curso', 'guard_name' => 'web']);
-        Permission::firstOrCreate(['name' => 'editar lecciones', 'guard_name' => 'web']);
+    
+       
         $adminUser = User::updateOrCreate(
             ['id' => 1], // fuerza a usar el ID 1 si existe o lo crea si no
             [
@@ -63,7 +61,7 @@ class RolesAndPermissionsSeeder extends Seeder
         $adminUser->assignRole('admin');
         $teacherUser->assignRole('teacher');
         $studentUser->assignRole('student');
-        $admin->syncPermissions('categorias', 'eliminar curso','editar lecciones');
+        $admin->syncPermissions('categorias', );
         $student->syncPermissions('inscribirse');
     }
 }

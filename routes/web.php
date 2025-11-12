@@ -14,7 +14,7 @@ Auth::routes();
 
 //rutas categorias 
 //solo vistas para el admin
-Route::prefix('categorias')->middleware(['permission:categorias'])->group(function () {
+Route::prefix('categorias')->middleware(['role:admin'])->group(function () {
     Route::get('/', [CategoriasController::class, 'index'])->name('categorias.table');
     Route::get('/create', [CategoriasController::class, 'create'])->name('categorias.create');
     Route::post('/store', [CategoriasController::class, 'store'])->name('categorias.store');
@@ -22,13 +22,14 @@ Route::prefix('categorias')->middleware(['permission:categorias'])->group(functi
 });
 
 
-Route::get('home/categorias/{id}', [CursosController::class, 'filterByCategory'])->name('filtro.categorias');
-Route::get('cursos/{id}', [CursosController::class, 'index'])->name('cursos.index');
-Route::prefix('cursos')->middleware(['permission:categorias'])->group(function () {
-    Route::delete('/{id}', [CursosController::class, 'destroy'])->name('cursos.destroy');
+Route::get('home/categorias/{categoria}', [CursosController::class, 'filterByCategory'])->name('filtro.categorias');
+Route::get('cursos/{curso}', [CursosController::class, 'index'])->name('cursos.index');
+
+Route::prefix('cursos')->group(function () {
+    Route::delete('/{curso}', [CursosController::class, 'destroy'])->name('cursos.destroy');
 
     Route::get('/', [CursosController::class, 'table'])->name('cursos.table');
-    Route::get('/{id}/lecciones', [CursosController::class, 'lecciones'])->name('cursos.lecciones');
+    Route::get('/{curso}/lecciones', [CursosController::class, 'lecciones'])->name('cursos.lecciones');
 
     Route::delete('/{curso}/lecciones/{lecciones}', [LeccionesController::class, 'destroy'])->name('lecciones.destroy');
 });

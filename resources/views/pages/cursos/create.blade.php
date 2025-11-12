@@ -1,4 +1,4 @@
-@extends('admin.layouts.app')
+@extends('pages.layouts.app')
 @section('content')
     <h1>new category</h1>
      <div class="card">
