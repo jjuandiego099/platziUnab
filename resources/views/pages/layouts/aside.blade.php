@@ -21,13 +21,17 @@
                      <span class="nav-link-text ms-1">Dashboard</span>
                  </a>
              </li>
-              <li class="nav-item">
+            @can('categorias')
+                 <li class="nav-item">
                  <a class="nav-link {{ Request::is('categorias*')  ? 'active bg-gradient-dark text-white' : 'text-dark' }}"
                      href="{{ route('categorias.table') }}">
                      <i class="material-symbols-rounded opacity-5">label</i>
                      <span class="nav-link-text ms-1">Categorias</span>
                  </a>
              </li>
+             @endcan
+             
+              
              
              <li class="nav-item">
 
@@ -35,32 +39,10 @@
                      href="#submenuCursos" role="button" aria-expanded="false" aria-controls="submenuCursos">
                      <i class="material-symbols-rounded opacity-5 me-2">folder</i>
                      <span class="nav-link-text flexgrow-1">Cursos</span>
-                     <i class="material-symbols-rounded ms-auto">expand_more</i>
+                     
                  </a>
 
-                 <!-- Submenú -->
-                 <div class="collapse ms-4" id="submenuCursos">
-                     <ul class="nav flex-column">
-                         <li class="nav-item">
-                             <a class="nav-link text-secondary">
-                                 <i class="material-symbols-rounded opacity-5 me-2">person</i>
-                                 Mis Cursos
-                             </a>
-                         </li>
-                         <li class="nav-item">
-                             <a class="nav-link text-secondary">
-                                 <i class="material-symbols-rounded opacity-5 me-2">add</i>
-                                 Crear Curso
-                             </a>
-                         </li>
-                         <li class="nav-item">
-                             <a class="nav-link text-secondary">
-                                 <i class="material-symbols-rounded opacity-5 me-2">search</i>
-                                 Buscar Curso
-                             </a>
-                         </li>
-                     </ul>
-                 </div>
+               
              </li>
               <li class="nav-item">
 
@@ -68,27 +50,11 @@
                      href="#submenuCertificados" role="button" aria-expanded="false" aria-controls="submenuCertificados">
                      <i class="material-symbols-rounded opacity-5 me-2">verified</i>
                      <span class="nav-link-text flexgrow-1">Certificados</span>
-                     <i class="material-symbols-rounded ms-auto">expand_more</i>
+                    
                  </a>
 
                  <!-- Submenú -->
-                 <div class="collapse ms-4" id="submenuCertificados">
-                     <ul class="nav flex-column">
-                         <li class="nav-item">
-                             <a class="nav-link text-secondary">
-                                 <i class="material-symbols-rounded opacity-5 me-2">person</i>
-                                 Mis Certificados
-                             </a>
-                         </li>
-                         <li class="nav-item">
-                             <a class="nav-link text-secondary">
-                                 <i class="material-symbols-rounded opacity-5 me-2">add</i>
-                                 generar Certificado
-                             </a>
-                         </li>
-                         
-                     </ul>
-                 </div>
+                
              </li>
              <li class="nav-item">
                  <a class="nav-link text-dark" href="../pages/tables.html">

@@ -15,4 +15,13 @@ class Inscripcion extends Model
         'progreso',
     ];
     public $timestamps =true;
+     public function usuario()
+    {
+        return $this->hasMany(User::class, 'user_id');
+    }
+
+    public function curso()
+    {
+        return $this->hasMany(Curso::class, 'curso_id');
+    }
 }
