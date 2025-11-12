@@ -36,9 +36,13 @@
                         </a>
                     @endcan
                     @can('eliminar curso')
-                        <a class="btn btn-primary btn-lg px-5 inscribirme-btn" href="{{ route('home') }}">
-                            Eliminar Curso
-                        </a>
+                     <form action="{{ route('cursos.destroy', $curso->id) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit"
+                                        class="btn btn-primary btn-lg px-5 inscribirme-btn">Eliminar Curso</button>
+                                </form>
+                        
                     @endcan
                     
 

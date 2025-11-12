@@ -42,10 +42,10 @@ class CursosController extends Controller
         return view('pages.dashboard', compact('cursos', 'categories', 'category'));
     }
     
-     public function Destroy($id)
-    {
+     public function destroy($id)
+    {   
         $cursos = Curso::find($id);
         $cursos->delete();
-        return redirect()->route('cursos.table');
+        return redirect()->route('home');
     }
 }
