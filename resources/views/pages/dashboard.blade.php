@@ -142,7 +142,7 @@
               </div>
 
               <!-- Botón -->
-              <a class="btn btn-outline-primary btn-sm w-100 ver-btn" href="{{route('categorias.index',$curso->id)}}">
+              <a class="btn btn-outline-primary btn-sm w-100 ver-btn" href="{{route('cursos.index',$curso->id)}}">
                 Ver detalles
               </a>
             </div>

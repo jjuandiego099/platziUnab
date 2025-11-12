@@ -1,86 +1,95 @@
 @extends('pages.layouts.app')
 
 @section('content')
-<div class="container-fluid px-3 my-5" style="overflow-x: hidden;">
+    <div class="container-fluid px-3 my-5" style="overflow-x: hidden;">
 
-  <!-- Card principal del curso -->
-  <div class="card shadow-lg border-0 mx-auto mb-5" style="max-width: 900px;">
-    <img src="{{ $curso->imagen ?? 'https://picsum.photos/900/400' }}" 
-         class="card-img-top img-fluid"
-         alt="Imagen del curso {{ $curso->titulo }}"
-         style="object-fit: cover; height: 400px;">
+        <!-- Card principal del curso -->
+        <div class="card shadow-lg border-0 mx-auto mb-5" style="max-width: 900px;">
+            <img src="{{ $curso->imagen ?? 'https://picsum.photos/900/400' }}" class="card-img-top img-fluid"
+                alt="Imagen del curso {{ $curso->titulo }}" style="object-fit: cover; height: 400px;">
 
-    <div class="card-body p-4">
-      <h2 class="card-title text-primary fw-bold mb-3">{{ $curso->titulo }}</h2>
+            <div class="card-body p-4">
+                <h2 class="card-title text-primary fw-bold mb-3">{{ $curso->titulo }}</h2>
 
-      <div class="d-flex flex-wrap gap-2 mb-4">
-        <span class="badge bg-info text-white px-3 py-2">
-          <strong>Categoría:</strong> {{ $curso->categoria->name ?? 'Sin categoría' }}
-        </span>
-        <span class="badge bg-secondary text-white px-3 py-2">
-          <strong>Nivel:</strong> {{ $curso->nivel }}
-        </span>
-        <span class="badge bg-info text-white px-3 py-2">
-          <strong>Profesor:</strong> {{ $curso->profesor->name ?? 'No asignado' }}
-        </span>
-      </div>
+                <div class="d-flex flex-wrap gap-2 mb-4">
+                    <span class="badge bg-info text-white px-3 py-2">
+                        <strong>Categoría:</strong> {{ $curso->categoria->name ?? 'Sin categoría' }}
+                    </span>
+                    <span class="badge bg-secondary text-white px-3 py-2">
+                        <strong>Nivel:</strong> {{ $curso->nivel }}
+                    </span>
+                    <span class="badge bg-info text-white px-3 py-2">
+                        <strong>Profesor:</strong> {{ $curso->profesor->name ?? 'No asignado' }}
+                    </span>
+                </div>
 
-      <p class="card-text text-muted fs-5 mb-4">
-        {{ $curso->descripcion }}
-      </p>
+                <p class="card-text text-muted fs-5 mb-4">
+                    {{ $curso->descripcion }}
+                </p>
 
-      <div class="text-center">
-        <a class="btn btn-primary btn-lg px-5 inscribirme-btn" href="{{route('home')}}">
-          Inscribirme
-        </a>
-       
-      </div>
+
+
+                <div class="text-center">
+                    @can('inscribirse')
+                        <a class="btn btn-primary btn-lg px-5 inscribirme-btn" href="{{ route('home') }}">
+                            Inscribirme
+                        </a>
+                    @endcan
+                    @can('eliminar curso')
+                        <a class="btn btn-primary btn-lg px-5 inscribirme-btn" href="{{ route('home') }}">
+                            Eliminar Curso
+                        </a>
+                    @endcan
+                    
+
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Sección de lecciones -->
+        <div class="card shadow-sm border-0 mx-auto" style="max-width: 900px;">
+            <div class="card-body p-4">
+                <h4 class="fw-bold text-primary mb-3">Lecciones del curso</h4>
+
+                @if ($curso->lecciones->count() > 0)
+                    <ul class="list-group list-group-flush">
+                        @foreach ($curso->lecciones->sortBy('orden') as $leccion)
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <div>
+                                    <strong>Leccion {{ $leccion->orden }}: {{ $leccion->titulo }}</strong><br>
+                                    <small class="text-muted">{{ $leccion->contenido }}</small>
+                                </div>
+                                <a href="{{ $leccion->video_url }}" target="_blank" class="btn btn-outline-primary btn-sm">
+                                    Ver video
+                                </a>
+                            </li>
+                        @endforeach
+                    </ul>
+                @else
+                    <p class="text-muted text-center mt-3">Este curso aún no tiene lecciones disponibles.</p>
+                @endif
+            </div>
+        </div>
+
     </div>
-  </div>
 
-  <!-- Sección de lecciones -->
-  <div class="card shadow-sm border-0 mx-auto" style="max-width: 900px;">
-    <div class="card-body p-4">
-      <h4 class="fw-bold text-primary mb-3">Lecciones del curso</h4>
+    <style>
+        .inscribirme-btn {
+            background-color: #e91e63;
+            border: none;
+            transition: all 0.3s ease;
+        }
 
-      @if ($curso->lecciones->count() > 0)
-        <ul class="list-group list-group-flush">
-          @foreach ($curso->lecciones->sortBy('orden') as $leccion)
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-              <div>
-                <strong>Leccion {{ $leccion->orden }}: {{ $leccion->titulo }}</strong><br>
-                <small class="text-muted">{{ $leccion->contenido }}</small>
-              </div>
-              <a href="{{ $leccion->video_url }}" target="_blank" class="btn btn-outline-primary btn-sm">
-                Ver video
-              </a>
-            </li>
-          @endforeach
-        </ul>
-      @else
-        <p class="text-muted text-center mt-3">Este curso aún no tiene lecciones disponibles.</p>
-      @endif
-    </div>
-  </div>
+        .inscribirme-btn:hover {
+            background-color: #c2185b;
+            box-shadow: 0 6px 14px rgba(233, 30, 99, 0.3);
+            transform: translateY(-3px);
+        }
 
-</div>
-
-<style>
-  .inscribirme-btn {
-    background-color: #e91e63;
-    border: none;
-    transition: all 0.3s ease;
-  }
-
-  .inscribirme-btn:hover {
-    background-color: #c2185b;
-    box-shadow: 0 6px 14px rgba(233, 30, 99, 0.3);
-    transform: translateY(-3px);
-  }
-
-  .list-group-item:hover {
-    background-color: #fce4ec;
-    transition: 0.3s ease;
-  }
-</style>
+        .list-group-item:hover {
+            background-color: #fce4ec;
+            transition: 0.3s ease;
+        }
+    </style>
 @endsection

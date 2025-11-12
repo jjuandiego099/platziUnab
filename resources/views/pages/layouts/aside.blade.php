@@ -38,7 +38,7 @@
                  <a class="nav-link text-dark d-flex align-items-center collapsed" data-bs-toggle="collapse"
                      href="#submenuCursos" role="button" aria-expanded="false" aria-controls="submenuCursos">
                      <i class="material-symbols-rounded opacity-5 me-2">folder</i>
-                     <span class="nav-link-text flexgrow-1">Cursos</span>
+                     <span class="nav-link-text flexgrow-1">Mis Cursos</span>
                      
                  </a>
 
