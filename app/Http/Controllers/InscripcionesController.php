@@ -27,7 +27,7 @@ class InscripcionesController extends Controller
         Inscripcion::create([
             'user_id' => $user->id,
             'curso_id' => $curso->id,
-            'progreso' => 0, // puedes iniciar en 0%
+            'progreso' => 0, 
         ]);
 
         return redirect()->route('home');

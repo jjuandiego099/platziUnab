@@ -31,7 +31,9 @@ Route::prefix('cursos')->group(function () {
     Route::post('/store', [CursosController::class, 'store'])->name('cursos.store'); 
     Route::delete('/{curso}', [CursosController::class, 'destroy'])->name('cursos.destroy'); //tiene policy
     Route::get('/{curso}/lecciones', [CursosController::class, 'lecciones'])->name('cursos.lecciones'); //tiene policy
-    Route::delete('/{curso}/lecciones/{lecciones}', [LeccionesController::class, 'destroy'])->name('lecciones.destroy'); //tiene policy
+    Route::get('/{curso}/lecciones/create', [LeccionesController::class, 'create'])->name('lecciones.create'); 
+    Route::post('/{curso}/lecciones/create', [LeccionesController::class, 'store'])->name('lecciones.store'); 
+    Route::delete('/{curso}/lecciones/{lecciones}', [LeccionesController::class, 'destroy'])->name('lecciones.destroy'); 
     Route::post('{curso}/inscribirse', [InscripcionesController::class, 'store'])->middleware('role:student')->name('inscripcion.store');
 
 });

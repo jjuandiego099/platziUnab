@@ -7,7 +7,7 @@
 
             <form action="{{ route('cursos.store') }}" method="post" enctype="multipart/form-data">
                 @csrf
-
+                <input type="hidden" name="curso_id" value="{{ $curso->id }}">
 
 
 
@@ -74,7 +74,7 @@
 
                 <!-- Botón de Envío -->
                 <div class="d-grid">
-                    <button type="submit" class="btn btn-primary">Guardar Producto</button>
+                    <button type="submit" class="btn btn-primary">Guardar Curso</button>
                 </div>
 
 

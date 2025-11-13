@@ -4,6 +4,7 @@
         <div class="card-body">
             <h3>Lecciones </h3>
             <h4>Curso : {{ $cursos->titulo }}</h4>
+            <a type="button " class="btn btn-success" href="{{ route('lecciones.create',$cursos->id) }}">Nueva Leccion</a>
 
             <table class="table align-items-center mb-0" ax>
                 <thead>

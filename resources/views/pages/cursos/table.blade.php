@@ -14,9 +14,9 @@
                     </th>
                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nivel</th>
                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Estudiantes</th>
-                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Created</th>
+                   
 
-                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"> </th>
+                  
 
                     @role('teacher')
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"></th>
@@ -46,9 +46,7 @@
                             <td class="align-middle text-center">
                                 {{ $curso->inscripciones_count }}
                             </td>
-                            <td class="align-middle text-center">
-                                {{ $curso->created_at }}
-                            </td>
+                          
                             <td>
                                 <form action="{{ route('cursos.destroy', $curso->id) }}" method="POST">
                                     @csrf
@@ -63,7 +61,7 @@
                                     <form action="{{ route('cursos.lecciones', $curso->id) }}" method="GET">
 
                                         <button type="submit"
-                                            class="btn btn-link text-blue p-0 m-0 align-baseline">Editar</button>
+                                            class="btn btn-link text-blue p-0 m-0 align-baseline">Lecciones</button>
                                     </form>
                                 @endrole
 
