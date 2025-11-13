@@ -30,16 +30,23 @@
 
 
                 <div class="text-center d-flex justify-content-between">
-                   
+
                     @role('student')
-                     <form action="{{ route('inscripcion.store',$curso->id) }}" method="post">
-                        @csrf
-                        <button class="btn btn-primary btn-lg px-5 inscribirme-btn" >
-                            Inscribirme
-                        </button>
-                     </form>
-                        
+                        {{-- Esto obtiene todas las inscripciones del curso en forma de colección (Collection). --}}
+                        {{-- Esto filtra la colección anterior y se queda solo con las inscripciones del usuario actual. --}}
+                        {{-- si el count devuelve 0 es true --}}
+                        @if (!$curso->inscripciones->where('user_id', auth()->id())->count())
+                            <form action="{{ route('inscripcion.store', $curso->id) }}" method="POST">
+                                @csrf
+                                <button class="btn btn-primary btn-lg px-5 inscribirme-btn">
+                                    Inscribirme
+                                </button>
+                            </form>
+                        @else
+                            <span class="badge bg-success">Ya estás inscrito</span>
+                        @endif
                     @endrole
+
                     @guest
                         <a class="btn btn-primary btn-lg px-5 inscribirme-btn" href="{{ route('login') }}">
                             Registrarme
@@ -52,6 +59,8 @@
                             <button type="submit" class="btn btn-primary btn-lg px-5 inscribirme-btn">Eliminar Curso</button>
                         </form>
                     @endcan
+
+
 
 
 
@@ -71,25 +80,28 @@
                             <button type="submit" class="btn btn-primary btn-lg px-5 inscribirme-btn">Editar Lecciones</button>
                         </form>
                     @endcan
-                        @if($curso->inscripciones->contains('user_id', auth()->id()))
-                    @if ($curso->lecciones->count() > 0)
-                        <ul class="list-group list-group-flush">
-                            @foreach ($curso->lecciones->sortBy('orden') as $leccion)
-                                <li class="list-group-item d-flex justify-content-between align-items-center">
-                                    <div>
-                                        <strong>Leccion {{ $leccion->orden }}: {{ $leccion->titulo }}</strong><br>
-                                        <small class="text-muted">{{ $leccion->contenido }}</small>
-                                    </div>
-                                    <a href="{{ $leccion->video_url }}" target="_blank" class="btn btn-outline-primary btn-sm">
-                                        Ver video
-                                    </a>
-                                </li>
-                            @endforeach
-                        </ul>
-                    @else
-                        <p class="text-muted text-center mt-3">Este curso aún no tiene lecciones disponibles.</p>
+                    @if (
+                        $curso->inscripciones->contains('user_id', auth()->id()) ||
+                            auth()->user()->hasAnyRole(['admin', 'teacher']))
+                        @if ($curso->lecciones->count() > 0)
+                            <ul class="list-group list-group-flush">
+                                @foreach ($curso->lecciones->sortBy('orden') as $leccion)
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <strong>Leccion {{ $leccion->orden }}: {{ $leccion->titulo }}</strong><br>
+                                            <small class="text-muted">{{ $leccion->contenido }}</small>
+                                        </div>
+                                        <a href="{{ $leccion->video_url }}" target="_blank"
+                                            class="btn btn-outline-primary btn-sm">
+                                            Ver video
+                                        </a>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        @else
+                            <p class="text-muted text-center mt-3">Este curso aún no tiene lecciones disponibles.</p>
+                        @endif
                     @endif
-                     @endif
                 </div>
             </div>
         @endauth

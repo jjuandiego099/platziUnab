@@ -36,4 +36,8 @@ class Curso extends Model
 {
     return $this->hasMany(Inscripcion::class, 'curso_id');
 }
+public function estaInscrito($userId)
+{
+    return $this->inscripciones()->where('user_id', $userId)->exists();
+}
 }

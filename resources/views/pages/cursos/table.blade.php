@@ -24,6 +24,9 @@
                     @role('teacher')
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"></th>
                     @endrole
+                    @role('student')
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"></th>
+                    @endrole
                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"> </th>
                 </thead>
                 <tbody>
@@ -78,6 +81,15 @@
                                 </td>
                             @endhasanyrole
                             @role('student')
+                            <td>
+                                    <form action="{{ route('cursos.index', $curso->id) }}"
+                                        method="GET">
+                                        {{-- se usa post xq html solo permite get y post --}}
+                                       
+                                        <button type="submit"
+                                            class="btn btn-link text-blue p-0 m-0 align-baseline">Ver</button>
+                                    </form>
+                                </td>
                                 <td>
                                     <form action="{{ route('inscripciones.destroy', $curso->inscripciones->first()->id) }}"
                                         method="POST">

@@ -2,10 +2,8 @@
 @section('content')
     <div class="card">
         <div class="card-body">
-            <h3>Lista Cursos</h3>
-            @role('teacher')
-                <a type="button " class="btn btn-success" href="{{ route('cursos.create') }}">Nuevo Curso</a>
-            @endrole
+            <h3>Lista Certificados</h3>
+            
             <table class="table align-items-center mb-0" ax>
                 <thead>
                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Id</th>
@@ -21,9 +19,7 @@
 
 
 
-                    @role('teacher')
-                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"></th>
-                    @endrole
+                    
                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"> </th>
                 </thead>
                 <tbody>
@@ -51,10 +47,15 @@
                             <td class="align-middle text-center">
                                 {{ $curso->nivel }}
                             </td>
+                            @role('teacher')
+                            <td class="align-middle text-center">
+                                    {{ $curso->inscripciones_count }}
+                                </td>
 
                             </td>
+                            @endrole
                             
-                            @role('student')
+                           
                                 <td>
                                     <form action="{{ route('certificados.download', $curso) }}"
                                         method="get">
@@ -65,7 +66,7 @@
                                             class="btn btn-link text-blue p-0 m-0 align-baseline">Descargar</button>
                                     </form>
                                 </td>
-                            @endrole
+                     
 
 
 

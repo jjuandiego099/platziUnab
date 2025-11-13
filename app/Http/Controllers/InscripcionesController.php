@@ -30,7 +30,7 @@ class InscripcionesController extends Controller
             'progreso' => 0, 
         ]);
 
-        return redirect()->route('home');
+        return redirect()->route('cursos.index',$curso->id);
     }
     public function destroy($id)
 {
