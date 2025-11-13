@@ -13,6 +13,23 @@ class CategoriaSeeder extends Seeder
      */
     public function run(): void
     {
-        Categoria::factory(10)->create();
+        $categorias = [
+            'Programación',
+            'Diseño Gráfico',
+            'Marketing Digital',
+            'Ciberseguridad',
+            'Inteligencia Artificial',
+            'Desarrollo Web',
+            'Gestión de Proyectos',
+            'Bases de Datos',
+            'Análisis de Datos',
+            'Emprendimiento'
+        ];
+
+        foreach ($categorias as $categoria) {
+            Categoria::create([
+                'name' => $categoria
+            ]);
+        }
     }
 }
