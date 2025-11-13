@@ -71,7 +71,7 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
         ]);
 
-        // Luego asignar el rol (nota: assignRole, no assingRole)
+        // Luego asignar el rol 
         $user->assignRole($data['role']);
 
         // Por último hacer el return

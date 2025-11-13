@@ -9,10 +9,9 @@ use App\Http\Controllers\LeccionesController;
 use App\Http\Controllers\PerfilController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
-Route::get('/home', [CursosController::class, 'home'])->name('home');
+
+Route::get('/', [CursosController::class, 'home'])->name('home');
+
 Auth::routes();
 
 //rutas categorias 
@@ -43,7 +42,7 @@ Route::delete('/inscripciones/{id}', [InscripcionesController::class, 'destroy']
     ->name('inscripciones.destroy');
 
 Route::get('/informacion', [InformacionController::class, 'index'])->name('informacion.index');
-Route::get('/certificados', [CertificadosController::class, 'table'])->name('certificados.table')->middleware('role:student.teacher');
+Route::get('/certificados', [CertificadosController::class, 'table'])->name('certificados.table')->middleware('role:student|teacher');
 Route::get('/certificados/{curso}', [CertificadosController::class, 'download'])
     ->name('certificados.download');
 
