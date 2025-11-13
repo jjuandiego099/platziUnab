@@ -61,7 +61,7 @@
              
              @endauth  
              <li class="nav-item">
-                 <a class="nav-link text-dark" href="../pages/tables.html">
+                 <a class="nav-link text-dark" href="{{route('informacion.index')}}">
                      <i class="material-symbols-rounded opacity-5">info</i>
                      <span class="nav-link-text ms-1">Informacion</span>
                  </a>
@@ -77,7 +77,7 @@
      <div class="sidenav-footer position-absolute w-100 bottom-0 ">
          <div class="mx-3">
 
-             <a class="btn bg-gradient-dark w-100" href="#" type="button">Mi Perfil</a>
+             <a class="btn bg-gradient-dark w-100" href="{{route('perfil.index')}}" type="button">Mi Perfil</a>
          </div>
      </div>
  </aside>

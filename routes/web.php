@@ -5,6 +5,7 @@ use App\Http\Controllers\CursosController;
 use App\Http\Controllers\InformacionController;
 use App\Http\Controllers\InscripcionesController;
 use App\Http\Controllers\LeccionesController;
+use App\Http\Controllers\PerfilController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -40,5 +41,6 @@ Route::prefix('cursos')->group(function () {
 Route::delete('/inscripciones/{id}', [InscripcionesController::class, 'destroy'])
     ->name('inscripciones.destroy');
 
-Route::get('informacion', [InformacionController::class, 'index'])->name('informacion.index');
+Route::get('/informacion', [InformacionController::class, 'index'])->name('informacion.index');
+Route::get('/perfil', [PerfilController::class, 'index'])->name('perfil.index');
 Route::get('home/categorias/{categoria}', [CursosController::class, 'filterByCategory'])->name('filtro.categorias');
