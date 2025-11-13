@@ -20,7 +20,7 @@
                      <span class="nav-link-text ms-1">Dashboard</span>
                  </a>
              </li>
-             @can('categorias')
+             @role('admin')
                  <li class="nav-item">
                      <a class="nav-link {{ Request::is('categorias*') ? 'active bg-gradient-dark text-white' : 'text-dark' }}"
                          href="{{ route('categorias.table') }}">
@@ -28,7 +28,7 @@
                          <span class="nav-link-text ms-1">Categorias</span>
                      </a>
                  </li>
-             @endcan
+             @endrole
 
 
 

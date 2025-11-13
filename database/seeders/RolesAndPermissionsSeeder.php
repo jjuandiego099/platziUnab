@@ -59,7 +59,7 @@ class RolesAndPermissionsSeeder extends Seeder
         $adminUser->assignRole('admin');
         $teacherUser->assignRole('teacher');
         $studentUser->assignRole('student');
-        $admin->syncPermissions('categorias');
+        $admin->syncPermissions();
         $student->syncPermissions();
     }
 }

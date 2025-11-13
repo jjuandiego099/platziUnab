@@ -19,7 +19,7 @@ class InscripcionFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => User::inRandomOrder()->first()?->id ?? User::factory(),
+            'user_id' => 3,
             'curso_id' => Curso::inRandomOrder()->first()?->id ?? Curso::factory(),
             'progreso' => 0,
         ];

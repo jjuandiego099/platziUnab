@@ -66,7 +66,7 @@
                             <button type="submit" class="btn btn-primary btn-lg px-5 inscribirme-btn">Editar Lecciones</button>
                         </form>
                     @endcan
-
+                        @if($curso->inscripciones->contains('user_id', auth()->id()))
                     @if ($curso->lecciones->count() > 0)
                         <ul class="list-group list-group-flush">
                             @foreach ($curso->lecciones->sortBy('orden') as $leccion)
@@ -84,6 +84,7 @@
                     @else
                         <p class="text-muted text-center mt-3">Este curso aún no tiene lecciones disponibles.</p>
                     @endif
+                     @endif
                 </div>
             </div>
         @endauth
