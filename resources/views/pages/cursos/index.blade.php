@@ -30,11 +30,11 @@
 
 
                 <div class="text-center d-flex justify-content-between">
-                    @can('inscribirse')
+                    @role('student')
                         <a class="btn btn-primary btn-lg px-5 inscribirme-btn" href="{{ route('home') }}">
                             Inscribirme
                         </a>
-                    @endcan
+                    @endrole
                     @guest
                         <a class="btn btn-primary btn-lg px-5 inscribirme-btn" href="{{ route('login') }}">
                             Registrarme

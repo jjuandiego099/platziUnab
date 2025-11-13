@@ -3,7 +3,7 @@
     <div class="card">
         <div class="card-body">
             <h3>Lista Cursos</h3>
-            <a type="button " class="btn btn-success" href="{{ route('categorias.create') }}">Nuevo Curso</a>
+            <a type="button " class="btn btn-success" href="{{ route('cursos.create') }}">Nuevo Curso</a>
 
             <table class="table align-items-center mb-0" ax>
                 <thead>

@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/home', [CursosController::class, 'cursos'])->name('home');
+Route::get('/home', [CursosController::class, 'home'])->name('home');
 Auth::routes();
 
 //rutas categorias 
@@ -22,19 +22,18 @@ Route::prefix('categorias')->middleware(['role:admin'])->group(function () {
 });
 
 
-Route::get('home/categorias/{categoria}', [CursosController::class, 'filterByCategory'])->name('filtro.categorias');
-Route::get('cursos/{curso}', [CursosController::class, 'index'])->name('cursos.index');
+
 
 Route::prefix('cursos')->group(function () {
-    Route::delete('/{curso}', [CursosController::class, 'destroy'])->name('cursos.destroy');
-    
-
-    Route::get('/', [CursosController::class, 'table'])->name('cursos.table');
-    Route::get('/{curso}/lecciones', [CursosController::class, 'lecciones'])->name('cursos.lecciones');
-
-    Route::delete('/{curso}/lecciones/{lecciones}', [LeccionesController::class, 'destroy'])->name('lecciones.destroy');
+    Route::get('/', [CursosController::class, 'table'])->name('cursos.table'); //tiene policy
+    Route::get('/create', [CursosController::class, 'create'])->name('cursos.create')->middleware('role:admin|teacher'); 
+    Route::post('/store', [CursosController::class, 'store'])->name('cursos.store'); 
+    Route::delete('/{curso}', [CursosController::class, 'destroy'])->name('cursos.destroy'); //tiene policy
+    Route::get('/{curso}/lecciones', [CursosController::class, 'lecciones'])->name('cursos.lecciones'); //tiene policy
+    Route::delete('/{curso}/lecciones/{lecciones}', [LeccionesController::class, 'destroy'])->name('lecciones.destroy'); //tiene policy
 });
-
+Route::get('cursos/{curso}', [CursosController::class, 'index'])->name('cursos.index');
+Route::get('home/categorias/{categoria}', [CursosController::class, 'filterByCategory'])->name('filtro.categorias');
 
 
 // Route::post('/cursos/{id}/inscribirse', [InscripcionesController::class, 'store'])->middleware('auth')->name('inscribirse');

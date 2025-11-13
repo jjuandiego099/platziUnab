@@ -6,11 +6,43 @@ use App\Models\Categoria;
 use App\Models\Curso;
 use App\Models\Leccion;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Gate;
+
 
 class CursosController extends Controller
 {
-    function cursos()
+    public function create()
+    {
+        $categorias = Categoria::all();
+        return view('pages.cursos.create', compact('categorias'));
+    }
+    public function store(Request $request)
+{
+    $request->validate([
+        //nombres identicos en el form de html
+        'titulo'       => 'required|string|max:255',
+        'descripcion'  => 'required|string',         
+        'imagen'       => 'required|url',
+        'nivel'        => 'required|string|in:Básico,Intermedio,Avanzado',
+        'categoria_id' => 'required|exists:categorias,id',
+        
+    ]);
+
+    $curso = new Curso();
+// primer titulo viene del campo en la bd
+// segundo titulo viene del id de cada campo del formulario del html
+    $curso->titulo = $request->get('titulo');
+    $curso->descripcion = $request->get('descripcion');
+    $curso->imagen = $request->get('imagen');
+    $curso->nivel = $request->get('nivel');
+    $curso->categoria_id = $request->get('categoria_id');
+    $curso->profesor_id = auth()->id();
+
+    $curso->save();
+
+    return redirect()->route('cursos.table');
+}
+
+    function home()
     {
         $cursos = Curso::all();
         $categories = Categoria::all();
@@ -66,7 +98,7 @@ class CursosController extends Controller
     public function destroy(Request $request, $id)
     {
         $cursos = Curso::find($id);
-        $this->authorize('editarLecciones', $cursos);
+        $this->authorize('editarLecciones', $cursos); //polity
         $cursos->delete();
         //se asigna un input con value table para redirigir de unuevo a esa vista
         if ($request->from === 'table') {

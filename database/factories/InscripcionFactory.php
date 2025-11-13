@@ -21,7 +21,7 @@ class InscripcionFactory extends Factory
         return [
             'user_id' => User::inRandomOrder()->first()?->id ?? User::factory(),
             'curso_id' => Curso::inRandomOrder()->first()?->id ?? Curso::factory(),
-            'progreso' => $this->faker->numberBetween(0, 100),
+            'progreso' => 0,
         ];
     }
 }
