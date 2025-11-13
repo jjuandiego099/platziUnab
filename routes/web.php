@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoriasController;
+use App\Http\Controllers\CertificadosController;
 use App\Http\Controllers\CursosController;
 use App\Http\Controllers\InformacionController;
 use App\Http\Controllers\InscripcionesController;
@@ -42,5 +43,9 @@ Route::delete('/inscripciones/{id}', [InscripcionesController::class, 'destroy']
     ->name('inscripciones.destroy');
 
 Route::get('/informacion', [InformacionController::class, 'index'])->name('informacion.index');
+Route::get('/certificados', [CertificadosController::class, 'table'])->name('certificados.table');
+Route::get('/certificados/{curso}', [CertificadosController::class, 'download'])
+    ->name('certificados.download');
+
 Route::get('/perfil', [PerfilController::class, 'index'])->name('perfil.index');
 Route::get('home/categorias/{categoria}', [CursosController::class, 'filterByCategory'])->name('filtro.categorias');

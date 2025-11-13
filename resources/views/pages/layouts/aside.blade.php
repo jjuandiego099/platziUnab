@@ -45,15 +45,16 @@
 
 
              </li>
+             @hasanyrole('student|teacher')
              <li class="nav-item">
 
-                 <a class="nav-link text-dark d-flex align-items-center collapsed" data-bs-toggle="collapse"
-                     href="#submenuCertificados" role="button" aria-expanded="false"
-                     aria-controls="submenuCertificados">
+                <a class="nav-link {{ Request::is('certificados*') ? 'active bg-gradient-dark text-white' : 'text-dark' }}"
+                     href="{{ route('certificados.table') }}" >
                      <i class="material-symbols-rounded opacity-5 me-2">verified</i>
                      <span class="nav-link-text flexgrow-1">Certificados</span>
 
                  </a>
+                 @endhasanyrole
 
                
 
@@ -61,8 +62,9 @@
              
              @endauth  
              <li class="nav-item">
-                 <a class="nav-link text-dark" href="{{route('informacion.index')}}">
-                     <i class="material-symbols-rounded opacity-5">info</i>
+                 <a class="nav-link {{ Request::is('informacion*') ? 'active bg-gradient-dark text-white' : 'text-dark' }}"
+                     href="{{ route('informacion.index') }}" >
+                      <i class="material-symbols-rounded opacity-5 me-2">info</i>
                      <span class="nav-link-text ms-1">Informacion</span>
                  </a>
              </li>
