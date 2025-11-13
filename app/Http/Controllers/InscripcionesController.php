@@ -32,4 +32,15 @@ class InscripcionesController extends Controller
 
         return redirect()->route('home');
     }
+    public function destroy($id)
+{
+    $inscripcion = Inscripcion::findOrFail($id);
+
+  
+    $inscripcion->delete();
+
+    return redirect()
+        ->route('cursos.table')
+       ;
+}
 }

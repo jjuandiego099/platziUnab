@@ -27,18 +27,18 @@ Route::prefix('categorias')->middleware(['role:admin'])->group(function () {
 
 Route::prefix('cursos')->group(function () {
     Route::get('/', [CursosController::class, 'table'])->name('cursos.table'); //tiene policy
-    Route::get('/create', [CursosController::class, 'create'])->name('cursos.create')->middleware('role:admin|teacher'); 
-    Route::post('/store', [CursosController::class, 'store'])->name('cursos.store'); 
+    Route::get('/create', [CursosController::class, 'create'])->name('cursos.create')->middleware('role:admin|teacher');
+    Route::post('/store', [CursosController::class, 'store'])->name('cursos.store');
+    Route::get('{curso}', [CursosController::class, 'index'])->name('cursos.index');
     Route::delete('/{curso}', [CursosController::class, 'destroy'])->name('cursos.destroy'); //tiene policy
     Route::get('/{curso}/lecciones', [CursosController::class, 'lecciones'])->name('cursos.lecciones'); //tiene policy
-    Route::get('/{curso}/lecciones/create', [LeccionesController::class, 'create'])->name('lecciones.create'); 
-    Route::post('/{curso}/lecciones/create', [LeccionesController::class, 'store'])->name('lecciones.store'); 
-    Route::delete('/{curso}/lecciones/{lecciones}', [LeccionesController::class, 'destroy'])->name('lecciones.destroy'); 
+    Route::get('/{curso}/lecciones/create', [LeccionesController::class, 'create'])->name('lecciones.create'); //tiene policy
+    Route::post('/{curso}/lecciones/create', [LeccionesController::class, 'store'])->name('lecciones.store');
+    Route::delete('/{curso}/lecciones/{lecciones}', [LeccionesController::class, 'destroy'])->name('lecciones.destroy');
     Route::post('{curso}/inscribirse', [InscripcionesController::class, 'store'])->middleware('role:student')->name('inscripcion.store');
-
 });
-Route::get('cursos/{curso}', [CursosController::class, 'index'])->name('cursos.index');
+Route::delete('/inscripciones/{id}', [InscripcionesController::class, 'destroy'])
+    ->name('inscripciones.destroy');
+
 Route::get('informacion', [InformacionController::class, 'index'])->name('informacion.index');
 Route::get('home/categorias/{categoria}', [CursosController::class, 'filterByCategory'])->name('filtro.categorias');
-
-

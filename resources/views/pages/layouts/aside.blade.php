@@ -58,12 +58,7 @@
                
 
              </li>
-             <li class="nav-item">
-                 <a class="nav-link text-dark" href="../pages/tables.html">
-                     <i class="material-symbols-rounded opacity-5">description</i>
-                     <span class="nav-link-text ms-1">Reseñas</span>
-                 </a>
-             </li>
+             
              @endauth  
              <li class="nav-item">
                  <a class="nav-link text-dark" href="../pages/tables.html">

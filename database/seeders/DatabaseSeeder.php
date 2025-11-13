@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder
             CursoSeeder::class,
             InscripcionSeeder::class,
             LeccionSeeder::class,
-            ReseñaSeeder::class,
+           
             
             
 

@@ -7,7 +7,7 @@
 
             <form action="{{ route('cursos.store') }}" method="post" enctype="multipart/form-data">
                 @csrf
-                <input type="hidden" name="curso_id" value="{{ $curso->id }}">
+               
 
 
 

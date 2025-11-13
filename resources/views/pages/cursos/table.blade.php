@@ -3,8 +3,9 @@
     <div class="card">
         <div class="card-body">
             <h3>Lista Cursos</h3>
-            <a type="button " class="btn btn-success" href="{{ route('cursos.create') }}">Nuevo Curso</a>
-
+            @hasanyrole('admin|teacher')
+                <a type="button " class="btn btn-success" href="{{ route('cursos.create') }}">Nuevo Curso</a>
+            @endhasanyrole
             <table class="table align-items-center mb-0" ax>
                 <thead>
                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Id</th>
@@ -13,10 +14,12 @@
                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Categoria
                     </th>
                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nivel</th>
-                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Estudiantes</th>
-                   
+                    @hasanyrole('admin|teacher')
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Estudiantes
+                        </th>
+                    @endhasanyrole
 
-                  
+
 
                     @role('teacher')
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"></th>
@@ -26,9 +29,16 @@
                 <tbody>
                     @foreach ($cursos as $curso)
                         <tr>
-                            <td class="align-middle text-center">
-                                {{ $curso->id }}
-                            </td>
+                            @role('student')
+                                <td class="align-middle text-center">
+                                    {{ $curso->inscripciones->first()->id }}
+                                </td>
+                            @endrole
+                            @hasanyrole('admin|teacher')
+                                <td class="align-middle text-center">
+                                    {{ $curso->id }}
+                                </td>
+                            @endhasanyrole
                             <td class="align-middle text-center">
                                 {{ $curso->titulo }}
                             </td>
@@ -43,29 +53,43 @@
                             </td>
 
                             </td>
-                            <td class="align-middle text-center">
-                                {{ $curso->inscripciones_count }}
-                            </td>
-                          
-                            <td>
-                                <form action="{{ route('cursos.destroy', $curso->id) }}" method="POST">
-                                    @csrf
-                                    @method('DELETE')
-                                    <input type="hidden" name="from" value="table">
-                                    <button type="submit"
-                                        class="btn btn-link text-danger p-0 m-0 align-baseline">Eliminar</button>
-                                </form>
-                            </td>
-                            <td>
-                                @role('teacher')
+                            @hasanyrole('admin|teacher')
+                                <td class="align-middle text-center">
+                                    {{ $curso->inscripciones_count }}
+                                </td>
+
+
+                                <td>
+                                    <form action="{{ route('cursos.destroy', $curso->id) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <input type="hidden" name="from" value="table">
+                                        <button type="submit"
+                                            class="btn btn-link text-danger p-0 m-0 align-baseline">Eliminar</button>
+                                    </form>
+                                </td>
+                                <td>
+
                                     <form action="{{ route('cursos.lecciones', $curso->id) }}" method="GET">
 
                                         <button type="submit"
                                             class="btn btn-link text-blue p-0 m-0 align-baseline">Lecciones</button>
                                     </form>
-                                @endrole
+                                </td>
+                            @endhasanyrole
+                            @role('student')
+                                <td>
+                                    <form action="{{ route('inscripciones.destroy', $curso->inscripciones->first()->id) }}"
+                                        method="POST">
+                                        {{-- se usa post xq html solo permite get y post --}}
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit"
+                                            class="btn btn-link text-blue p-0 m-0 align-baseline">Quitar</button>
+                                    </form>
+                                </td>
+                            @endrole
 
-                            </td>
 
 
                         </tr>

@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Curso extends Model
-{
+{   //las relaciones devuelcen un objeto hasmany
     use HasFactory;
 
     use HasFactory;
