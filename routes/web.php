@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CategoriasController;
 use App\Http\Controllers\CursosController;
+use App\Http\Controllers\InformacionController;
 use App\Http\Controllers\InscripcionesController;
 use App\Http\Controllers\LeccionesController;
 use Illuminate\Support\Facades\Route;
@@ -31,9 +32,11 @@ Route::prefix('cursos')->group(function () {
     Route::delete('/{curso}', [CursosController::class, 'destroy'])->name('cursos.destroy'); //tiene policy
     Route::get('/{curso}/lecciones', [CursosController::class, 'lecciones'])->name('cursos.lecciones'); //tiene policy
     Route::delete('/{curso}/lecciones/{lecciones}', [LeccionesController::class, 'destroy'])->name('lecciones.destroy'); //tiene policy
+    Route::post('{curso}/inscribirse', [InscripcionesController::class, 'store'])->middleware('role:student')->name('inscripcion.store');
+
 });
 Route::get('cursos/{curso}', [CursosController::class, 'index'])->name('cursos.index');
+Route::get('informacion', [InformacionController::class, 'index'])->name('informacion.index');
 Route::get('home/categorias/{categoria}', [CursosController::class, 'filterByCategory'])->name('filtro.categorias');
 
 
-// Route::post('/cursos/{id}/inscribirse', [InscripcionesController::class, 'store'])->middleware('auth')->name('inscribirse');

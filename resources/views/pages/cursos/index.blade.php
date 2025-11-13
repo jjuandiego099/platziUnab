@@ -30,10 +30,15 @@
 
 
                 <div class="text-center d-flex justify-content-between">
+                   
                     @role('student')
-                        <a class="btn btn-primary btn-lg px-5 inscribirme-btn" href="{{ route('home') }}">
+                     <form action="{{ route('inscripcion.store',$curso->id) }}" method="post">
+                        @csrf
+                        <button class="btn btn-primary btn-lg px-5 inscribirme-btn" >
                             Inscribirme
-                        </a>
+                        </button>
+                     </form>
+                        
                     @endrole
                     @guest
                         <a class="btn btn-primary btn-lg px-5 inscribirme-btn" href="{{ route('login') }}">

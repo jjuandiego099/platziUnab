@@ -31,7 +31,9 @@
              @endrole
 
 
-
+            @auth
+                
+              
              <li class="nav-item">
 
                  <a class="nav-link {{ Request::is('cursos*') ? 'active bg-gradient-dark text-white' : 'text-dark' }}"
@@ -53,7 +55,7 @@
 
                  </a>
 
-                 <!-- Submenú -->
+               
 
              </li>
              <li class="nav-item">
@@ -62,6 +64,7 @@
                      <span class="nav-link-text ms-1">Reseñas</span>
                  </a>
              </li>
+             @endauth  
              <li class="nav-item">
                  <a class="nav-link text-dark" href="../pages/tables.html">
                      <i class="material-symbols-rounded opacity-5">info</i>
