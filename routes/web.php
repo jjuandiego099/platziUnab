@@ -43,7 +43,7 @@ Route::delete('/inscripciones/{id}', [InscripcionesController::class, 'destroy']
     ->name('inscripciones.destroy');
 
 Route::get('/informacion', [InformacionController::class, 'index'])->name('informacion.index');
-Route::get('/certificados', [CertificadosController::class, 'table'])->name('certificados.table');
+Route::get('/certificados', [CertificadosController::class, 'table'])->name('certificados.table')->middleware('role:student.teacher');
 Route::get('/certificados/{curso}', [CertificadosController::class, 'download'])
     ->name('certificados.download');
 
